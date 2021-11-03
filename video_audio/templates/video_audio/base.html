@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+     <form>
+         {% csrf_token %}
+         <b>Ссылка на видео YouTube:</b><br>
+         <input type="url" name="url" size="50">
+         <input type="submit" value="Загрузить" formmethod="post"><br><br>
+     </form>
+         {% for i in obj %}
+             <b>Видео:</b><br>
+             Название: {{ i.title }}<br>
+             Длительность: {{ i.length }}<br>
+             Формат: {{ i.video_type }}<br>
+             <b><a href="{{ i.url }}" download="">Скачать</a></b><br><br>
+             <b>Только аудио:</b><br>
+             Формат: {{ i.audio_type }}<br>
+             <b><a href="{{ i.audio }}" download>Скачать</a></b>
+         {% endfor %}
+
+</body>
