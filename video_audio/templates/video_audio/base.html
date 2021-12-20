@@ -1,4 +1,4 @@
-<head>
+<head xmlns="http://www.w3.org/1999/html">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -10,15 +10,15 @@
          <input type="url" name="url" size="50">
          <input type="submit" value="Загрузить" formmethod="post"><br><br>
      </form>
-         {% for i in obj %}
-             <b>Видео:</b><br>
-             Название: {{ i.title }}<br>
-             Длительность: {{ i.length }}<br>
-             Формат: {{ i.video_type }}<br>
-             <b><a href="{{ i.url }}" download="">Скачать</a></b><br><br>
-             <b>Только аудио:</b><br>
-             Формат: {{ i.audio_type }}<br>
-             <b><a href="{{ i.audio }}" download>Скачать</a></b>
-         {% endfor %}
 
+     {% for i in data %}
+         <h4>{{ i.title }}</h4>
+         <b>Видео:</b><br>
+         Длительность: {{ i.length }}<br>
+         Качество: {{ i.resolution }}<br>
+         <b><a href="{{ i.video_url }}">Скачать</a></b><br><br>
+         <b>Только аудио:</b><br>
+         Качество: {{ i.abr }}<br>
+         <b><a href="{{ i.audio_url }}">Скачать</a></b>
+     {% endfor %}
 </body>

@@ -17,8 +17,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'video_audio',
-    'api',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [

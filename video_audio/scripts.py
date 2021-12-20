@@ -1,5 +1,5 @@
 from pytube import YouTube
-import datetime
+from datetime import timedelta
 
 
 def youtube_downloader(url):
@@ -9,14 +9,14 @@ def youtube_downloader(url):
 
     data = {
         'title': yt.title,
-        'length': str(datetime.timedelta(seconds=yt.length)),
-        'url': video_stream.url,
-        'video_type': video_stream.mime_type,
-        'audio': audio_stream.url,
-        'audio_type': audio_stream.mime_type
+        'length': str(timedelta(seconds=yt.length)),
+        'video_url': video_stream.url,
+        'resolution': video_stream.resolution,
+        'audio_url': audio_stream.url,
+        'abr': audio_stream.abr
     }
 
     return data
 
 
-# print(video_downloader('https://www.youtube.com/watch?v=9qrE4i7b7zQ'))
+# print(youtube_downloader('https://www.youtube.com/watch?v=9qrE4i7b7zQ'))
