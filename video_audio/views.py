@@ -10,5 +10,10 @@ class VideoView(View):
 
     def post(self, request):
         template = 'video_audio/base.html'
-        data = youtube_downloader(request.POST.get('url'))
+        url = request.POST.get('url')
+
+        if not url:
+            return render(request, template)
+
+        data = youtube_downloader(url)
         return render(request, template, context={'data': [data]})
