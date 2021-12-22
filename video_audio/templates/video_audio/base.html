@@ -1,29 +1,28 @@
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Скачать видео с YouTube</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
 </head>
 
 <body>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="pb-3">
-        <div class="container">
-             <form>
-                 {% csrf_token %}
+     <form>
+         {% csrf_token %}
+         <div class="alert alert-secondary" role="alert">
+             <div class="container">
                  <div class="input-group mb-3">
                      <input type="url" class="form-control" placeholder="Вставьте ссылку на видео сюда" name="url" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                      <input type="submit" class="btn btn-primary" value="Загрузить" formmethod="post">
                  </div>
-             </form>
-             {% for i in data %}
-                 <br>
-                 <h5>{{ i.title }}</h5><br>
-                 <img src="{{ i.image }}" class="rounded float-start" style="max-width:22%;">
+             </div>
+         </div>
+     </form>
+    <div class="container">
+         {% for i in data %}
+             <div class="border">
+                 <img src="{{ i.image }}" class="rounded float-start" style="max-width:26.8%;">
                  <div class="row">
+                     <h5>{{ i.title }}</h5>
                      <b>Видео:</b><br>
                      <a>Длительность: {{ i.length }}</a><br>
                      <a>Качество: {{ i.resolution }}</a><br>
@@ -37,7 +36,7 @@
                         <a class="btn btn-primary" href="{{ i.audio_url }}" role="button">Скачать</a>
                      </div>
                  </div>
-             {% endfor %}
-        </div>
+             </div>
+         {% endfor %}
     </div>
 </body>
