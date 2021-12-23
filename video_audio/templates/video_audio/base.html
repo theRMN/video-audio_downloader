@@ -4,39 +4,44 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
 </head>
-
 <body>
-     <form>
-         {% csrf_token %}
-         <div class="alert alert-secondary" role="alert">
-             <div class="container">
-                 <div class="input-group mb-3">
-                     <input type="url" class="form-control" placeholder="Вставьте ссылку на видео сюда" name="url" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                     <input type="submit" class="btn btn-primary" value="Загрузить" formmethod="post">
-                 </div>
-             </div>
-         </div>
-     </form>
+    <form>
+        {% csrf_token %}
+        <div class="alert alert-secondary" role="alert">
+            <div class="container">
+                <div class="input-group mb-3">
+                    <input type="url" class="form-control" placeholder="Вставьте ссылку на видео сюда" name="url" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="submit" class="btn btn-primary" value="Загрузить" formmethod="post">
+                </div>
+            </div>
+        </div>
+    </form>
     <div class="container">
-         {% for i in data %}
-             <div class="border">
-                 <img src="{{ i.image }}" class="rounded float-start" style="max-width:26.8%;">
-                 <div class="row">
-                     <h5>{{ i.title }}</h5>
-                     <b>Видео:</b><br>
-                     <a>Длительность: {{ i.length }}</a><br>
-                     <a>Качество: {{ i.resolution }}</a><br>
-                     <div class="input-group mb-3">
-                        <a class="btn btn-primary" href="{{ i.video_url }}" role="button">Скачать</a>
-                     </div>
-                     <br><br>
-                     <b>Только аудио:</b><br>
-                     <a>Качество: {{ i.abr }}</a><br>
-                     <div class="input-group mb-3">
+        {% for error in exception %}
+            <div class="alert alert-danger" role="alert">
+                {{ error }}
+            </div>
+        {% endfor %}
+        {% for i in data %}
+            <div class="border">
+                <img src="{{ i.image }}" class="rounded float-start" style="max-width:26.8%;">
+                <div class="row">
+                    <h5>{{ i.title }}</h5>
+                    <b>Видео:</b><br>
+                    <a>Длительность: {{ i.length }}</a><br>
+                    <a>Качество: {{ i.resolution }}</a><br>
+                    <div class="input-group mb-3">
+                        <a id="download-link" class="btn btn-primary" href="{{ i.video_url }}" role="button">Скачать</a>
+                    </div>
+                    <br>
+                    <br>
+                    <b>Только аудио:</b><br>
+                    <a>Качество: {{ i.abr }}</a><br>
+                    <div class="input-group mb-3">
                         <a class="btn btn-primary" href="{{ i.audio_url }}" role="button">Скачать</a>
-                     </div>
-                 </div>
-             </div>
-         {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </body>

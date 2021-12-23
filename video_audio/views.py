@@ -1,19 +1,21 @@
 from django.shortcuts import render
 from django.views.generic import View
 
-from .scripts import youtube_downloader
+from .scripts import check_exceptions
 
 
 class VideoView(View):
-    def get(self, request):
+    @staticmethod
+    def get(request):
         return render(request, 'video_audio/base.html')
 
-    def post(self, request):
+    @staticmethod
+    def post(request):
         template = 'video_audio/base.html'
         url = request.POST.get('url')
+        data = check_exceptions(url)
 
-        if not url:
-            return render(request, template)
+        if data.get('exception'):
+            return render(request, template, context=data)
 
-        data = youtube_downloader(url)
         return render(request, template, context={'data': [data]})
