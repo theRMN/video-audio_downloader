@@ -1,21 +1,17 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import TemplateView
 
 from .scripts import check_exceptions
 
 
-class VideoView(View):
-    @staticmethod
-    def get(request):
-        return render(request, 'video_audio/base.html')
+class VideoTemplateView(TemplateView):
+    template_name = 'video_audio/base.html'
 
-    @staticmethod
-    def post(request):
-        template = 'video_audio/base.html'
+    def post(self, request):
         url = request.POST.get('url')
         data = check_exceptions(url)
 
         if data.get('exception'):
-            return render(request, template, context=data)
+            return render(request, self.template_name, context=data)
 
-        return render(request, template, context={'data': [data]})
+        return render(request, self.template_name, context={'data': [data]})

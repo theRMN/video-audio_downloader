@@ -10,7 +10,6 @@ def get_video_data(url):
     audio_stream = yt.streams.get_audio_only()
 
     data = {
-        'exception': None,
         'title': yt.title,
         'length': str(timedelta(seconds=yt.length)),
         'video_url': video_stream.url,
