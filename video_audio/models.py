@@ -11,3 +11,6 @@ class VideoInfo(models.Model):
     abr = models.TextField()
     image = models.URLField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-id']
