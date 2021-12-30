@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'video_audio',
+
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -89,3 +91,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = '/'

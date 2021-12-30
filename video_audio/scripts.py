@@ -1,7 +1,7 @@
 from pytube import YouTube
-from datetime import timedelta
-
 from pytube.exceptions import LiveStreamError, RegexMatchError, VideoUnavailable
+
+from datetime import timedelta
 
 
 def get_video_data(url):

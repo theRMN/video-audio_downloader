@@ -8,3 +8,4 @@ class VideoInfo(models.Model):
     video_url = models.URLField()
     audio_url = models.URLField()
     abr = models.TextField()
+    image = models.URLField()
