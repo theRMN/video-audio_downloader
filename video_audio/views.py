@@ -26,7 +26,12 @@ class RegisterView(TemplateView):
 
 
 class VideoView(TemplateView):
-    template_name = 'video_audio/index.html'
+
+    def get_template_names(self):
+        if self.request.user.id:
+            return 'video_audio/index_l.html'
+
+        return 'video_audio/index.html'
 
     def post(self, request):
         url = request.POST.get('url')
@@ -34,13 +39,13 @@ class VideoView(TemplateView):
         user = request.user
 
         if data.get('exception'):
-            return render(request, self.template_name, context=data)
+            return render(request, self.get_template_names(), context=data)
 
         if user.id:
             data['user'] = user
             VideoInfo.objects.create(**data)
 
-        return render(request, self.template_name, context={'data': [data]})
+        return render(request, self.get_template_names(), context={'data': [data]})
 
 
 class UserVideoView(LoginRequiredMixin, ListView):
