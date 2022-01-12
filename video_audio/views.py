@@ -20,7 +20,7 @@ class RegisterView(TemplateView):
 
             if password == password2:
                 User.objects.create_user(username, email, password)
-                return redirect(reverse("login"))
+                return redirect(reverse('login'))
 
         return render(request, self.template_name)
 
@@ -49,9 +49,15 @@ class VideoView(TemplateView):
 
 
 class UserVideoView(LoginRequiredMixin, ListView):
-    template_name = 'video_audio/profile.html'
+    template_name = 'video_audio/history.html'
 
     def get_queryset(self):
         new_context = VideoInfo.objects.filter(user_id=self.request.user.id)
 
         return new_context
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.id:
+            return super().dispatch(request, *args, **kwargs)
+
+        return redirect(reverse('main'))

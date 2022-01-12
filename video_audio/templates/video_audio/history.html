@@ -5,8 +5,16 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
 </head>
 <body>
-    <br>
-    <br>
+    <div class="alert alert-secondary" role="alert">
+        <div class="container">
+            <div class="input-group mb-3">
+                <div class="col-auto" style="display: block; margin-left: auto;">
+                    <a class="btn btn-primary" href="{% url 'main' %}" role="button">На главную</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}" role="button">Выход</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="container">
         <div class="row g-3">
             {% for i in object_list %}
