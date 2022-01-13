@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, ListView
 
-from .scripts import check_exceptions
+from .services import check_exceptions, check_user_id
 from .models import VideoInfo
 
 
@@ -41,9 +41,7 @@ class VideoView(TemplateView):
         if data.get('exception'):
             return render(request, self.get_template_names(), context=data)
 
-        if user.id:
-            data['user'] = user
-            VideoInfo.objects.create(**data)
+        check_user_id(data, user)
 
         return render(request, self.get_template_names(), context={'data': [data]})
 

@@ -3,6 +3,8 @@ from pytube.exceptions import LiveStreamError, RegexMatchError, VideoUnavailable
 
 from datetime import timedelta
 
+from video_audio.models import VideoInfo
+
 
 def get_video_data(url):
     yt = YouTube(url)
@@ -33,3 +35,10 @@ def check_exceptions(url):
         return {'exception': ['Видео недоступно']}
 
     return data
+
+
+def check_user_id(data, user):
+
+    if user.id:
+        data['user'] = user
+        VideoInfo.objects.create(**data)
