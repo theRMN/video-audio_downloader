@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import django_heroku
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -52,10 +53,21 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'youtube_downloader.wsgi.application'
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'booking_parking_place',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
     }
 }
 
@@ -97,3 +109,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = '/'
+
+django_heroku.settings(locals())
