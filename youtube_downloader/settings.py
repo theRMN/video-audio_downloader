@@ -63,7 +63,7 @@ WSGI_APPLICATION = 'youtube_downloader.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'booking_parking_place',
+        'NAME': 'test',
         'HOST': '127.0.0.1',
         'PORT': '5432',
         'USER': 'admin',
